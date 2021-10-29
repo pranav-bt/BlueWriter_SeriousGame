@@ -6,6 +6,8 @@ public class SC_PlatformTile : MonoBehaviour
 {
     public Transform startPoint;
     public Transform endPoint;
+    public Transform leftclamp;
+    public Transform Rightclamp;
     public GameObject[] obstacles; //Objects that contains different obstacle types which will be randomly activated
 
     public void ActivateRandomObstacle()

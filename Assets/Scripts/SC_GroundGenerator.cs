@@ -53,7 +53,8 @@ public class SC_GroundGenerator : MonoBehaviour
     {
         // Move the object upward in world space x unit/second.
         //Increase speed the higher score we get
-        if (!gameOver && gameStarted)
+        mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, (spawnedTiles[1].leftclamp.position.z + spawnedTiles[1].Rightclamp.position.z) / 2);       
+        if (!gameOver && gameStarted) 
         {
             transform.Translate((-spawnedTiles[0].transform.right * -1) * Time.deltaTime * (movingSpeed + (score / 500)), Space.World);
             score += Time.deltaTime * movingSpeed;
@@ -107,5 +108,14 @@ public class SC_GroundGenerator : MonoBehaviour
 
         GUI.color = Color.green;
         GUI.Label(new Rect(5, 5, 200, 25), "Score: " + ((int)score));
+    }
+
+    public Transform leftclampgetter()
+    {
+        return spawnedTiles[10].leftclamp.transform;
+    }
+    public Transform rightclampgetter()
+    {
+        return spawnedTiles[10].Rightclamp.transform;
     }
 }

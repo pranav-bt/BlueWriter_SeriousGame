@@ -20,6 +20,7 @@ public class JournalControl : MonoBehaviour
     public void NoJournal()
     {
         SC_GroundGenerator.instance.Pickup = false;
+        gamecanvas.SetActive(false);
     }
     public void submitjournalbutton()
     {

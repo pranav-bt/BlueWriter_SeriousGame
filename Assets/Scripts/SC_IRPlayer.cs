@@ -8,7 +8,7 @@ public class SC_IRPlayer : MonoBehaviour
 {
     public float gravity = 20.0f;
     public float jumpHeight = 2.5f;
-
+    public bool controlsactive = true;
     Rigidbody r;
     bool grounded = false;
     Vector3 defaultScale;
@@ -27,49 +27,56 @@ public class SC_IRPlayer : MonoBehaviour
     void Update()
     {
         // Jump
-        if (Input.GetKeyDown(KeyCode.W) && grounded)
+        if (controlsactive == true)
         {
-            r.velocity = new Vector3(r.velocity.x, CalculateJumpVerticalSpeed(), r.velocity.z);
-        }
-
-        //Crouch
-        crouch = Input.GetKey(KeyCode.S);
-        if (crouch)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(defaultScale.x, defaultScale.y * 0.4f, defaultScale.z), Time.deltaTime * 7);
-        }
-        else
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, defaultScale, Time.deltaTime * 7);
-        }
-
-        //left
-        if(Input.GetKey(KeyCode.LeftArrow))
-        {
-            if(transform.position.z <= FindObjectOfType<SC_GroundGenerator>().leftclampgetter().position.z)
+            if (Input.GetKeyDown(KeyCode.W) && grounded)
             {
-                transform.position = transform.position;
+                r.velocity = new Vector3(r.velocity.x, CalculateJumpVerticalSpeed(), r.velocity.z);
             }
-            else { transform.Translate(Vector3.left * 2 * Time.deltaTime); }
-            
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            if (transform.position.z >= (FindObjectOfType<SC_GroundGenerator>().rightclampgetter().position.z))
+
+            //Crouch
+            crouch = Input.GetKey(KeyCode.S);
+            if (crouch)
             {
-                transform.position = transform.position;
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(defaultScale.x, defaultScale.y * 0.4f, defaultScale.z), Time.deltaTime * 7);
             }
-            else { transform.Translate(Vector3.right * 2 * Time.deltaTime); }
+            else
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, defaultScale, Time.deltaTime * 7);
+            }
+
+            //left
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                if (transform.position.z <= FindObjectOfType<SC_GroundGenerator>().leftclampgetter().position.z)
+                {
+                    transform.position = transform.position;
+                }
+                else { transform.Translate(Vector3.left * 2 * Time.deltaTime); }
+
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                if (transform.position.z >= (FindObjectOfType<SC_GroundGenerator>().rightclampgetter().position.z))
+                {
+                    transform.position = transform.position;
+                }
+                else { transform.Translate(Vector3.right * 2 * Time.deltaTime); }
+            }
         }
+        else { GetComponent<Rigidbody>().useGravity = false; }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // We apply gravity manually for more tuning control
+        if(controlsactive == true)
+        { 
         r.AddForce(new Vector3(0, -gravity * r.mass, 0));
 
         grounded = false;
+        }
     }
 
     void OnCollisionStay()

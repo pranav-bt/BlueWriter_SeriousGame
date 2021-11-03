@@ -101,6 +101,7 @@ public class SC_IRPlayer : MonoBehaviour
         else if(collision.gameObject.tag == "Pickup")
         {
             SC_GroundGenerator.instance.Pickup = true;
+            FindObjectOfType<M_Narration>().PickupPrint();
         }
     }
 }

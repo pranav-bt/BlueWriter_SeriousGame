@@ -18,6 +18,7 @@ public class SC_GroundGenerator : MonoBehaviour
     public bool gameOver = false;
     static bool gameStarted = false;
     float score = 0;
+    public bool Pickup;
 
     public static SC_GroundGenerator instance;
 
@@ -25,7 +26,7 @@ public class SC_GroundGenerator : MonoBehaviour
     void Start()
     {
         instance = this;
-
+        Pickup = false;
         Vector3 spawnPosition = startPoint.position;
         int tilesWithNoObstaclesTmp = tilesWithoutObstacles;
         for (int i = 0; i < tilesToPreSpawn; i++)
@@ -54,7 +55,7 @@ public class SC_GroundGenerator : MonoBehaviour
         // Move the object upward in world space x unit/second.
         //Increase speed the higher score we get
         mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, (spawnedTiles[1].leftclamp.position.z + spawnedTiles[1].Rightclamp.position.z) / 2);       
-        if (!gameOver && gameStarted) 
+        if (!gameOver && gameStarted && !Pickup) 
         {
             transform.Translate((-spawnedTiles[0].transform.right * -1) * Time.deltaTime * (movingSpeed + (score / 500)), Space.World);
             score += Time.deltaTime * movingSpeed;
@@ -66,7 +67,14 @@ public class SC_GroundGenerator : MonoBehaviour
             SC_PlatformTile tileTmp = spawnedTiles[0];
             spawnedTiles.RemoveAt(0);
             tileTmp.transform.position = spawnedTiles[spawnedTiles.Count - 1].endPoint.position - tileTmp.startPoint.localPosition;
+            int rand = Random.Range(1, 3);
+            if (rand ==2 )
+            {
+                tileTmp.activatejournal();
+            }
+            else { 
             tileTmp.ActivateRandomObstacle();
+            }
             spawnedTiles.Add(tileTmp);
         }
 
@@ -84,6 +92,7 @@ public class SC_GroundGenerator : MonoBehaviour
                 {
                     //Start the game
                     gameStarted = true;
+                    FindObjectOfType<M_Narration>().canvasoff();
                 }
             }
         }
@@ -96,14 +105,14 @@ public class SC_GroundGenerator : MonoBehaviour
             GUI.color = Color.red;
             GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), "Game Over\nYour score is: " + ((int)score) + "\nPress 'Space' to restart");
         }
-        else
+      /*  else
         {
             if (!gameStarted)
             {
                 GUI.color = Color.red;
                 GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), "Press 'Space' to start");
             }
-        }
+        }*/
 
 
         GUI.color = Color.green;

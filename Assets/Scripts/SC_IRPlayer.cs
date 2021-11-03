@@ -98,5 +98,9 @@ public class SC_IRPlayer : MonoBehaviour
             //print("GameOver!");
             SC_GroundGenerator.instance.gameOver = true;
         }
+        else if(collision.gameObject.tag == "Pickup")
+        {
+            SC_GroundGenerator.instance.Pickup = true;
+        }
     }
 }

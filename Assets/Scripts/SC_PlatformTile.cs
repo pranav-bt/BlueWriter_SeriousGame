@@ -9,6 +9,7 @@ public class SC_PlatformTile : MonoBehaviour
     public Transform leftclamp;
     public Transform Rightclamp;
     public GameObject[] obstacles; //Objects that contains different obstacle types which will be randomly activated
+    public GameObject journal;
 
     public void ActivateRandomObstacle()
     {
@@ -21,9 +22,16 @@ public class SC_PlatformTile : MonoBehaviour
 
     public void DeactivateAllObstacles()
     {
+        journal.SetActive(false);
         for (int i = 0; i < obstacles.Length; i++)
         {
             obstacles[i].SetActive(false);
         }
+    }
+
+    public void activatejournal()
+    {
+        DeactivateAllObstacles();
+        journal.SetActive(true);
     }
 }

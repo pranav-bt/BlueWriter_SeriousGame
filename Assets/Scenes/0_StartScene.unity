@@ -1222,51 +1222,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0118
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.056
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0408
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.65016973
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.27799165
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.27799165
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.65016973
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -46.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042023225869285003, guid: d7ad142bf435c904fa4b9b9ffaf35665,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7ad142bf435c904fa4b9b9ffaf35665, type: 3}
 --- !u!1 &1883544535

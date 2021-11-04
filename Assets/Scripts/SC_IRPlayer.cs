@@ -13,7 +13,8 @@ public class SC_IRPlayer : MonoBehaviour
     bool grounded = false;
     Vector3 defaultScale;
     bool crouch = false;
-
+    [HideInInspector]
+    Touch touch;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class SC_IRPlayer : MonoBehaviour
         r.freezeRotation = true;
         r.useGravity = false;
         defaultScale = transform.localScale;
+
     }
 
     void Update()
@@ -70,12 +72,29 @@ public class SC_IRPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Vector2 pos;
+        
         // We apply gravity manually for more tuning control
         if(controlsactive == true)
         { 
         r.AddForce(new Vector3(0, -gravity * r.mass, 0));
 
         grounded = false;
+        }
+
+        if(Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved && Input.touchCount == 1)
+            {
+                pos = touch.position;
+                //Debug.Log(pos);
+                Debug.Log(Camera.main.ScreenToWorldPoint(pos));
+            }
+            else
+            {
+                
+            }
         }
     }
 

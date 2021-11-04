@@ -8,6 +8,10 @@ public class JournalControl : MonoBehaviour
     public GameObject gamecanvas;
     public GameObject JournalCanvas;
     public Canvas Canvas;
+    public GameObject OnlineJournalInputField;
+    public GameObject OnlineJournalButton;
+    public GameObject OfflineJournalPrompt;
+    public GameObject OfflineJournalButton;
     public void OnlineJournal()
     {
         gamecanvas.SetActive(false);
@@ -15,7 +19,12 @@ public class JournalControl : MonoBehaviour
     }
     public void OfflineJournal()
     {
-
+        gamecanvas.SetActive(false);
+        JournalCanvas.SetActive(true);
+        OnlineJournalInputField.SetActive(false);
+        OnlineJournalButton.SetActive(false);
+        OfflineJournalPrompt.SetActive(true);
+        OfflineJournalButton.SetActive(true);
     }
     public void NoJournal()
     {
@@ -26,5 +35,15 @@ public class JournalControl : MonoBehaviour
     {
         SC_GroundGenerator.instance.Pickup = false;
         JournalCanvas.SetActive(false);
+    }
+
+    public void offlinejournalbutton()
+    {
+        OnlineJournalInputField.SetActive(true);
+        OnlineJournalButton.SetActive(true);
+        OfflineJournalPrompt.SetActive(false);
+        OfflineJournalButton.SetActive(false);
+        JournalCanvas.SetActive(false);
+        SC_GroundGenerator.instance.Pickup = false;
     }
 }

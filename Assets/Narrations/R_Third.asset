@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aae4bae42da0084e8481cd80893177f, type: 3}
   m_Name: R_Third
   m_EditorClassIdentifier: 
-  NarrationText: 
+  NarrationText: "Don\u2019t let fear get in the way of your journey. Let fear motivate
+    you, not put you down."

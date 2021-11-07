@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aae4bae42da0084e8481cd80893177f, type: 3}
   m_Name: Start
   m_EditorClassIdentifier: 
-  NarrationText: Welcome to Blue Runner! Begin your calm and soothing journey in
-    this adventure land!
+  NarrationText: Welcome! Your journey begins here.

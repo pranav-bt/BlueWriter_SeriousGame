@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pickup
+  - L_Narration
+  - R_Narration
   layers:
   - Default
   - TransparentFX

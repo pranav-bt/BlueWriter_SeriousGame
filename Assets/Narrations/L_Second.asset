@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aae4bae42da0084e8481cd80893177f, type: 3}
   m_Name: L_Second
   m_EditorClassIdentifier: 
-  NarrationText: 
+  NarrationText: 'Throughout our journey, we must focus on what makes us feel good.
+    What do you look forward to during your journey? What activities, things, people
+    make you feel good on a daily basis? Reflect on what makes you feel good.
+
+'

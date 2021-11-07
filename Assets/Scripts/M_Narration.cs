@@ -6,12 +6,16 @@ using TMPro;
 public class M_Narration : MonoBehaviour
 {
     public NarrationScriptable NarrationInput;
-    public NarrationScriptable FirstPickupInput;
-    public GameObject gamecanvas;
-    public Canvas canvas;
+    public List<NarrationScriptable> left = new List<NarrationScriptable>();
+    public List<NarrationScriptable> Right = new List<NarrationScriptable>();
+    public int MaxJournalCount;
+    public Transform gamecanvas;
+    public Canvas canvas;   
     public GameObject Onlinejournal;
     public GameObject OfflineJournal;
     public GameObject NoJournal;
+    [HideInInspector]
+    int currentjournalindex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,26 +24,41 @@ public class M_Narration : MonoBehaviour
 
     public void canvasoff()
     {
-        gamecanvas.SetActive(false);
+        gamecanvas.gameObject.SetActive(false);
     }
     private IEnumerator PrintonlyandWait()
     {
-        gamecanvas.SetActive(true);
+        gamecanvas.gameObject.SetActive(true);
         Onlinejournal.SetActive(false);
         OfflineJournal.SetActive(false);
         NoJournal.SetActive(false);
         canvas.GetComponentInChildren<TextMeshProUGUI>().SetText(NarrationInput.NarrationText);
         yield return new WaitForSeconds(5);
-        gamecanvas.SetActive(false);
+        canvas.GetComponentInChildren<TextMeshProUGUI>().SetText("");
+        gamecanvas.gameObject.SetActive(false);
     }
 
     public void PickupPrint()
     {
-        gamecanvas.SetActive(true);
+        gamecanvas.gameObject.SetActive(true);
         Onlinejournal.SetActive(true);
         OfflineJournal.SetActive(true);
         NoJournal.SetActive(true);
-        canvas.GetComponentInChildren<TextMeshProUGUI>().SetText(FirstPickupInput.NarrationText);
+        foreach (Transform myCanvas in gamecanvas)
+        {
+            if (myCanvas.GetComponentInChildren<TextMeshProUGUI>().tag == "L_Narration" && currentjournalindex < MaxJournalCount)
+            {
+                myCanvas.GetComponentInChildren<TextMeshProUGUI>().SetText(left[currentjournalindex].NarrationText);
+            }
+            if (myCanvas.GetComponentInChildren<TextMeshProUGUI>().tag == "R_Narration" && currentjournalindex < MaxJournalCount)
+            {
+                myCanvas.GetComponentInChildren<TextMeshProUGUI>().SetText(Right[currentjournalindex].NarrationText);
+            }
+        }
+        if (currentjournalindex < MaxJournalCount)
+        {
+            currentjournalindex++;
+        }
     }
     
 }

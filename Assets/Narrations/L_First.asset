@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aae4bae42da0084e8481cd80893177f, type: 3}
   m_Name: L_First
   m_EditorClassIdentifier: 
-  NarrationText: Here is the first pickup! write journal
+  NarrationText: Suppressed emotions can accumulate over time, especially in times
+    of stress and change. Imagine a shadow growing behind you representing your suppressed
+    emotions. What do you want to say to the shadow? What are your emotions telling
+    you?

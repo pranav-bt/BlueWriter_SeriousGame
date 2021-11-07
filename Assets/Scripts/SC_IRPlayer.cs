@@ -88,8 +88,8 @@ public class SC_IRPlayer : MonoBehaviour
 
         if(Input.touchCount > 0)
         {
-            
-            SC_GroundGenerator.instance.gameStarted = true;
+            if (SC_GroundGenerator.instance)
+            { SC_GroundGenerator.instance.gameStarted = true; }
             touch = Input.GetTouch(0);
           
             

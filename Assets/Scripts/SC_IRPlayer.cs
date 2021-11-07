@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class SC_IRPlayer : MonoBehaviour
     bool crouch = false;
     [HideInInspector]
     Touch touch;
+    bool swipeup;
+    bool duck;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,30 +75,109 @@ public class SC_IRPlayer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 pos;
+
+        Vector3 pos;
         
         // We apply gravity manually for more tuning control
-        if(controlsactive == true)
+        if (controlsactive == true)
         { 
         r.AddForce(new Vector3(0, -gravity * r.mass, 0));
 
-        grounded = false;
+        //grounded = false;
         }
 
         if(Input.touchCount > 0)
         {
+            
+            SC_GroundGenerator.instance.gameStarted = true;
             touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved && Input.touchCount == 1)
+          
+            
+            if (Input.touchCount == 1)
             {
                 pos = touch.position;
-                //Debug.Log(pos);
-                Debug.Log(Camera.main.ScreenToWorldPoint(pos));
+                Debug.Log("Pos: " + pos);
+                checkforswipes();
+                if (controlsactive == true)
+                {
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                       
+                        if (swipeup == true && grounded)
+                        {
+                            grounded = false;
+                            r.velocity = new Vector3(r.velocity.x, CalculateJumpVerticalSpeed(), r.velocity.z);
+                            swipeup = false;
+                        }
+                        else if(duck == true)
+                        {
+                            crouch = Input.GetKey(KeyCode.S);
+                            if (crouch)
+                            {
+                                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(defaultScale.x, defaultScale.y * 0.4f, defaultScale.z), Time.deltaTime * 7);
+                            }
+                            else
+                            {
+                                transform.localScale = Vector3.Lerp(transform.localScale, defaultScale, Time.deltaTime * 7);
+                            }
+                        }
+                    }
+                    else if(touch.phase == TouchPhase.Stationary)
+                    {
+                        if (pos.x > ((Screen.width / 2) + (Screen.width/4)))
+                        {
+                            if (transform.position.z >= (FindObjectOfType<SC_GroundGenerator>().rightclampgetter().position.z))
+                            {
+                                transform.position = transform.position;
+                            }
+                            else { transform.Translate(Vector3.right * 2 * Time.deltaTime); }
+                        }
+                        else if (pos.x < ((Screen.width / 2) - (Screen.width / 4)))
+                        {
+                            if (transform.position.z <= FindObjectOfType<SC_GroundGenerator>().leftclampgetter().position.z)
+                            {
+                                transform.position = transform.position;
+                            }
+                            else { transform.Translate(Vector3.left * 2 * Time.deltaTime); }
+                        }
+                    }
+                }
+                else
+                    {
+                        GetComponent<Rigidbody>().useGravity = false;
+                    }
+                
             }
             else
             {
                 
             }
         }
+    }
+
+    private void checkforswipes()
+    {
+        Vector3 startswipepos = new Vector3(0,0,0);
+        Vector3 endswipepos = new Vector3(0,0,0);
+        if (touch.phase == TouchPhase.Began)
+        {
+            startswipepos = touch.position;
+        }
+        if(touch.phase == TouchPhase.Ended)
+        {
+            endswipepos = touch.position;
+        }
+        if (endswipepos.y - startswipepos.y > 10)
+        {
+            swipeup = true;
+        }
+        else if(endswipepos.y - startswipepos.y < -10)
+        {
+            duck = true;
+        }
+        
+        Debug.Log("Startpos: " + startswipepos);
+        Debug.Log("EndPos: " + endswipepos);
     }
 
     void OnCollisionStay()

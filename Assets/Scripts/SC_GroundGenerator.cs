@@ -16,7 +16,7 @@ public class SC_GroundGenerator : MonoBehaviour
     int nextTileToActivate = -1;
     [HideInInspector]
     public bool gameOver = false;
-    static bool gameStarted = false;
+    public bool gameStarted = false;
     float score = 0;
     public bool Pickup;
 

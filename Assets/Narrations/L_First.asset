@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aae4bae42da0084e8481cd80893177f, type: 3}
-  m_Name: FirstPickup
+  m_Name: L_First
   m_EditorClassIdentifier: 
   NarrationText: Here is the first pickup! write journal

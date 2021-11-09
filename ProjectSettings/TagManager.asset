@@ -7,6 +7,8 @@ TagManager:
   - Pickup
   - L_Narration
   - R_Narration
+  - L_BG
+  - R_BG
   layers:
   - Default
   - TransparentFX

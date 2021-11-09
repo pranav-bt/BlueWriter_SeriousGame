@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SC_GroundGenerator : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class SC_GroundGenerator : MonoBehaviour
     public bool gameStarted = false;
     float score = 0;
     public bool Pickup;
-
+    private GUIStyle guiStyle = new GUIStyle();
     public static SC_GroundGenerator instance;
 
     // Start is called before the first frame update
     void Start()
     {
+        guiStyle.fontSize = 24;
         instance = this;
         Pickup = false;
         Vector3 spawnPosition = startPoint.position;
@@ -92,6 +94,7 @@ public class SC_GroundGenerator : MonoBehaviour
                 {
                     //Start the game
                     gameStarted = true;
+                    FindObjectOfType<M_Narration>().clearstarttext();
                     FindObjectOfType<M_Narration>().canvasoff();
                 }
             }
@@ -103,7 +106,7 @@ public class SC_GroundGenerator : MonoBehaviour
         if (gameOver)
         {
             GUI.color = Color.red;
-            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), "Game Over\nYour score is: " + ((int)score) + "\nPress 'Space' to restart");
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 500, 500), "Game Over\nYour score is: " + ((int)score) + "\nTap to restart" , guiStyle);
         }
       /*  else
         {
@@ -116,7 +119,7 @@ public class SC_GroundGenerator : MonoBehaviour
 
 
         GUI.color = Color.green;
-        GUI.Label(new Rect(5, 5, 200, 25), "Score: " + ((int)score));
+        GUI.Label(new Rect(5, 5, 300, 40), "Score: " + ((int)score));
     }
 
     public Transform leftclampgetter()

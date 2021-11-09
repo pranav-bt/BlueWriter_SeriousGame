@@ -57,7 +57,7 @@ public class SC_IRPlayer : MonoBehaviour
                 {
                     transform.position = transform.position;
                 }
-                else { transform.Translate(Vector3.left * 2 * Time.deltaTime); }
+                else { transform.Translate(Vector3.left * 4 * Time.deltaTime); }
 
             }
             if (Input.GetKey(KeyCode.RightArrow))
@@ -66,7 +66,7 @@ public class SC_IRPlayer : MonoBehaviour
                 {
                     transform.position = transform.position;
                 }
-                else { transform.Translate(Vector3.right * 2 * Time.deltaTime); }
+                else { transform.Translate(Vector3.right * 4 * Time.deltaTime); }
             }
         }
         else { GetComponent<Rigidbody>().useGravity = false; }
@@ -130,7 +130,7 @@ public class SC_IRPlayer : MonoBehaviour
                             {
                                 transform.position = transform.position;
                             }
-                            else { transform.Translate(Vector3.right * 2 * Time.deltaTime); }
+                            else { transform.Translate(Vector3.right * 4 * Time.deltaTime); }
                         }
                         else if (pos.x < ((Screen.width / 2) - (Screen.width / 4)))
                         {
@@ -138,7 +138,7 @@ public class SC_IRPlayer : MonoBehaviour
                             {
                                 transform.position = transform.position;
                             }
-                            else { transform.Translate(Vector3.left * 2 * Time.deltaTime); }
+                            else { transform.Translate(Vector3.left * 4 * Time.deltaTime); }
                         }
                     }
                 }
@@ -203,6 +203,7 @@ public class SC_IRPlayer : MonoBehaviour
         {
             SC_GroundGenerator.instance.Pickup = true;
             FindObjectOfType<M_Narration>().PickupPrint();
+            
         }
     }
 }

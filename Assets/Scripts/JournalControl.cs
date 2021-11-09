@@ -28,17 +28,20 @@ public class JournalControl : MonoBehaviour
     }
     public void NoJournal()
     {
+        FindObjectOfType<SC_IRPlayer>().controlsactive = true;
         SC_GroundGenerator.instance.Pickup = false;
         gamecanvas.SetActive(false);
     }
     public void submitjournalbutton()
     {
+        FindObjectOfType<SC_IRPlayer>().controlsactive = true;
         SC_GroundGenerator.instance.Pickup = false;
         JournalCanvas.SetActive(false);
     }
 
     public void offlinejournalbutton()
     {
+        FindObjectOfType<SC_IRPlayer>().controlsactive = true;
         OnlineJournalInputField.SetActive(true);
         OnlineJournalButton.SetActive(true);
         OfflineJournalPrompt.SetActive(false);

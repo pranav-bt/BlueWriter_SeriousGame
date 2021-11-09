@@ -82,7 +82,7 @@ public class SC_GroundGenerator : MonoBehaviour
 
         if (gameOver || !gameStarted)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
             {
                 if (gameOver)
                 {
